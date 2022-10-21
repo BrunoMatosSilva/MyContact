@@ -1,31 +1,63 @@
 import PropTypes from 'prop-types';
 
-import FormGroup from "../FormGroup";
+import FormGroup from '../FormGroup';
 import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
 import { ButtonContainer, Form } from "./styles";
+import { useState } from 'react';
 
 export default function ContactForm({buttonLabel}){
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [category, setCategory] = useState('');
+
+  function handleSubmit(e){
+    e.preventDefault();
+    console.log(
+      {name, email, phone, category}
+    )
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
-        <Input type="text" placeholder="Nome" />
-      </FormGroup>
-
-      <FormGroup error="O formato do e-mail é inválido.">
-        <Input error type="email" placeholder="E-mail" />
-      </FormGroup>
-
-      <FormGroup>
-        <Input type="phone" placeholder="(11) 99999-9999" />
+        <Input
+        type="text"
+        placeholder="Nome"
+        onChange={(e) => setName(e.target.value)}
+        value={name}
+        />
       </FormGroup>
 
       <FormGroup>
-        <Select>
-          <option value="facebook">Facebook</option>
-          <option value="instagram">Instagram</option>
-          <option value="whatsapp">Whatsapp</option>
+        <Input
+        type="email"
+        placeholder="E-mail"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <Input
+        type="phone"
+        placeholder="(11) 99999-9999"
+        onChange={(e) => setPhone(e.target.value)}
+        value={phone}
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <Select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">Categoria</option>
+          <option value="Intagram">Instagram</option>
+          <option value="Whatsapp">Whatsapp</option>
+          <option value="Discord">Discord</option>
         </Select>
       </FormGroup>
 
