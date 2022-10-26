@@ -4,7 +4,8 @@ import FormGroup from '../FormGroup';
 import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
-import { ButtonContainer, Form } from "./styles";
+import isEmailValid from '../../utils/isEmailValid';
+import { ButtonContainer, Form } from './styles';
 import { useState } from 'react';
 
 export default function ContactForm({buttonLabel}){
@@ -12,6 +13,47 @@ export default function ContactForm({buttonLabel}){
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [category, setCategory] = useState('');
+  const [errors, setErrors] = useState([]);
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+
+    if(!e.target.value){
+      setErrors((prevState) => [
+        ...prevState,
+        {field: 'name', message: 'Nome é obrigatorio'},
+      ]);
+    }else{
+      setErrors((prevState) => prevState.filter(
+      (error) => error.field !== 'name',
+      ))
+    }
+  }
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+
+    if(e.target.value && !isEmailValid(e.target.value)){
+      const errorAlreadyExists = errors.find((error) => error.field === 'email');
+
+      if(errorAlreadyExists) {
+        return;
+      }
+
+      setErrors((prevState) => [
+        ...prevState,
+        { field: 'email', message: 'E-mail invalido.'},
+      ])
+    }else{
+      setErrors((prevState) => prevState.filter(
+        (error) => error.field !== 'email',
+      ));
+    }
+  }
+
+  function getErrorMessageByFieldName(fieldName){
+    return errors.find((error)=> error.field === fieldName)?.message;
+  }
 
   function handleSubmit(e){
     e.preventDefault();
@@ -22,20 +64,20 @@ export default function ContactForm({buttonLabel}){
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
-        type="text"
+        error={getErrorMessageByFieldName('name')}
         placeholder="Nome"
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleNameChange}
         value={name}
         />
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
-        type="email"
+        error={getErrorMessageByFieldName('email')}
         placeholder="E-mail"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={handleEmailChange}
         value={email}
         />
       </FormGroup>
