@@ -12,6 +12,7 @@ export default styled.input`
   padding: 0 16px;
   font-size: 16px;
   transition: border 0.2s ease-in;
+  appearance: none;
 
   &:hover {
     border: 2px solid ${({theme}) => theme.colors.primary.main};

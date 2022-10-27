@@ -5,28 +5,31 @@ import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
 import isEmailValid from '../../utils/isEmailValid';
+import formatPhone from '../../utils/formatPhone';
 import { ButtonContainer, Form } from './styles';
 import { useState } from 'react';
+import useErrors from '../../hooks/useErrors';
 
 export default function ContactForm({buttonLabel}){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [category, setCategory] = useState('');
-  const [errors, setErrors] = useState([]);
+  const {
+    setError,
+    removeError,
+    getErrorMessageByFieldName,
+    errors
+  } = useErrors();
+  const isFormValid = (name && errors.length === 0);
 
   function handleNameChange(e) {
     setName(e.target.value);
 
     if(!e.target.value){
-      setErrors((prevState) => [
-        ...prevState,
-        {field: 'name', message: 'Nome é obrigatorio'},
-      ]);
+      setError({ field: 'name', message: 'Nome é obrigatório.' });
     }else{
-      setErrors((prevState) => prevState.filter(
-      (error) => error.field !== 'name',
-      ))
+      removeError('name');
     }
   }
 
@@ -34,25 +37,14 @@ export default function ContactForm({buttonLabel}){
     setEmail(e.target.value);
 
     if(e.target.value && !isEmailValid(e.target.value)){
-      const errorAlreadyExists = errors.find((error) => error.field === 'email');
-
-      if(errorAlreadyExists) {
-        return;
-      }
-
-      setErrors((prevState) => [
-        ...prevState,
-        { field: 'email', message: 'E-mail invalido.'},
-      ])
+      setError({ field: 'email', message: 'E-mail não é valido.' });
     }else{
-      setErrors((prevState) => prevState.filter(
-        (error) => error.field !== 'email',
-      ));
+      removeError('email')
     }
   }
 
-  function getErrorMessageByFieldName(fieldName){
-    return errors.find((error)=> error.field === fieldName)?.message;
+  function handlePhoneChange(e){
+    setPhone(formatPhone(e.target.value));
   }
 
   function handleSubmit(e){
@@ -63,11 +55,11 @@ export default function ContactForm({buttonLabel}){
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} noValidate>
       <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
         error={getErrorMessageByFieldName('name')}
-        placeholder="Nome"
+        placeholder="Nome *"
         onChange={handleNameChange}
         value={name}
         />
@@ -75,6 +67,7 @@ export default function ContactForm({buttonLabel}){
 
       <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
+        type="email"
         error={getErrorMessageByFieldName('email')}
         placeholder="E-mail"
         onChange={handleEmailChange}
@@ -84,10 +77,11 @@ export default function ContactForm({buttonLabel}){
 
       <FormGroup>
         <Input
-        type="phone"
-        placeholder="(11) 99999-9999"
-        onChange={(e) => setPhone(e.target.value)}
+        type="tel"
+        placeholder="(11) 9 9999-9999"
+        onChange={handlePhoneChange}
         value={phone}
+        maxLength="15"
         />
       </FormGroup>
 
@@ -104,7 +98,7 @@ export default function ContactForm({buttonLabel}){
       </FormGroup>
 
       <ButtonContainer>
-        <Button type="submit">{buttonLabel}</Button>
+        <Button type="submit" disabled={!isFormValid}>{buttonLabel}</Button>
       </ButtonContainer>
     </Form>
   );
