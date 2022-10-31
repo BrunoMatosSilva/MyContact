@@ -1,29 +1,40 @@
 import { Link } from 'react-router-dom';
-
-import { Card, Container, Header, InputSearchContainer, ListHeader } from './styles';
+import { useEffect, useState, useMemo } from 'react';
+import Loader from '../../components/Loader';
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
-import { useEffect, useState, useMemo } from 'react';
+
+import { Card, Container, Header, InputSearchContainer, ListHeader } from './styles';
+import ContactsService from '../../services/ContactsService';
 
 export default function Home(){
   const [contacts, setContacts] = useState([]);
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isloading, setIsLoading] = useState(true);
 
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
       contact.name.toLowerCase().includes(searchTerm.toLowerCase())
       )),[contacts, searchTerm]);
 
   useEffect(() => {
-  fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
-    .then(async (response) => {
-      const json = await response.json();
-      setContacts(json);
-    })
-    .catch((error) => {
-      console.log('erro', error);
-    });
+    async function loadContacts() {
+      try {
+        setIsLoading(true);
+
+        const contactsList = await ContactsService.listContacts(orderBy);
+
+        setContacts(contactsList);
+
+      } catch(error){
+        console.log('Caiu no catch!',error);
+
+      } finally {
+        setIsLoading(false);
+      }
+    }
+      loadContacts();
     }, [orderBy]);
 
     function handleToggleOrderBy(){
@@ -38,6 +49,7 @@ export default function Home(){
 
   return (
     <Container>
+      <Loader isLoading={isloading} />
 
     <InputSearchContainer>
       <input
