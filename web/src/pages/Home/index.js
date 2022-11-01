@@ -5,8 +5,19 @@ import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 import sad from '../../assets/images/sad.svg';
+import emptyBox from '../../assets/images/empty-box.svg';
+import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 
-import { Card, Container, Header, InputSearchContainer, ListHeader, ErrorContainer } from './styles';
+import {
+  Card,
+  Container,
+  Header,
+  InputSearchContainer,
+  ListHeader,
+  ErrorContainer,
+  EmptyListContainer,
+  SearchNotFoundContainer
+} from './styles';
 import Button from '../../components/Button';
 import ContactsService from '../../services/ContactsService';
 
@@ -14,7 +25,7 @@ export default function Home(){
   const [contacts, setContacts] = useState([]);
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
-  const [isloading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
@@ -58,9 +69,10 @@ export default function Home(){
 
   return (
     <Container>
-      <Loader isLoading={isloading} />
+      <Loader isLoading={isLoading} />
 
-    <InputSearchContainer>
+    {(!hasError && contacts.length > 0) && (
+      <InputSearchContainer>
       <input
       value={searchTerm}
       type="text"
@@ -68,9 +80,17 @@ export default function Home(){
       onChange={handleChangeSearchTerm}
       />
     </InputSearchContainer>
+    )}
 
-    <Header hasError={hasError}>
-      {!hasError && (
+    <Header
+    justifyContent={
+      hasError ? 'flex-end' :
+      (
+        contacts.length > 0 ? 'space-between' : 'center'
+      )
+    }
+    >
+      {(!hasError && contacts.length > 0) && (
       <strong>
         {filteredContacts.length}
         {filteredContacts.length === 1 ? ' contato' : ' contatos'}
@@ -91,6 +111,26 @@ export default function Home(){
 
     {!hasError && (
       <>
+      {(contacts.length < 1 && !isLoading ) && (
+        <EmptyListContainer>
+          <img src={emptyBox} alt="Empty box" />
+
+          <p>
+          Você ainda não tem nenhum contato cadastrado!
+          Clique no botão <strong>”Novo contato”</strong> à cima para cadastrar
+          o seu primeiro!
+          </p>
+        </EmptyListContainer>
+      )}
+
+      {(contacts.length > 0 && filteredContacts.length < 1) && (
+      <SearchNotFoundContainer>
+        <img src={magnifierQuestion} alt="Magnifier question" />
+
+        <span>Nenhum resultado foi encontrado para <strong>{searchTerm}</strong>.</span>
+      </SearchNotFoundContainer>
+      )}
+
       {filteredContacts.length > 0 && (
       <ListHeader orderBy={orderBy}>
         <button type="button" onClick={handleToggleOrderBy}>
