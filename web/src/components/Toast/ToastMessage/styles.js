@@ -23,6 +23,10 @@ align-items: center;
 justify-content: center;
 cursor: pointer;
 
+&:focus {
+  background: purple;
+}
+
 & + & {
   margin-top: 12px;
 }
