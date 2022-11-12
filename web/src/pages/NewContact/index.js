@@ -14,7 +14,7 @@ export default function NewContact(){
         category_id: formData.categoryId,
       };
 
-     await ContactsService.createContacts(contact);
+     await ContactsService.createContact(contact);
 
       toast({
         type: 'success',
