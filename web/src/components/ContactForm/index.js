@@ -51,9 +51,9 @@ const ContactForm = forwardRef(({buttonLabel, onSubmit}, ref) =>{
     async function loadCategories() {
       setIsLoadingCategories(true);
       try{
-        const caregoriesList = await CategoriesService.listCategories();
+        const categoriesList = await CategoriesService.listCategories();
 
-        setCategories(caregoriesList);
+        setCategories(categoriesList);
       }catch{}finally{
         setIsLoadingCategories(false);
       }
