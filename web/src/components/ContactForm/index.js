@@ -22,7 +22,7 @@ const ContactForm = forwardRef(({buttonLabel, onSubmit}, ref) =>{
   const [categoryId, setCategoryId] = useState('');
   const [categories, setCategories] = useSafeAsyncState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useSafeAsyncState(true);
-  const [isSubmitting, setIsSubmitting] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     setError,
