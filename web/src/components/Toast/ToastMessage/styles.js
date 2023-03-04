@@ -10,7 +10,7 @@ const containerVariants = {
   danger: css`
   background: ${({theme}) => theme.colors.danger.main};
   `,
-}
+};
 
 export const Container = styled.div`
 padding: 16px 32px;

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import { StyledSpinner } from "./styles";
 
@@ -12,4 +12,4 @@ Spinner.propTypes = {
 
 Spinner.defaultProps = {
   size: 32,
-}
+};

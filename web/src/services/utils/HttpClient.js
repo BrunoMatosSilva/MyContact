@@ -7,14 +7,14 @@ class HttpClient {
 
   get(path, options) {
     return this.makeRequest(path, {
-      method: 'GET',
+      method: "GET",
       headers: options?.headers,
     });
   }
 
   post(path, options) {
     return this.makeRequest(path, {
-      method: 'POST',
+      method: "POST",
       body: options?.body,
       headers: options?.headers,
     });
@@ -22,7 +22,7 @@ class HttpClient {
 
   put(path, options) {
     return this.makeRequest(path, {
-      method: 'PUT',
+      method: "PUT",
       body: options?.body,
       headers: options?.headers,
     });
@@ -30,7 +30,7 @@ class HttpClient {
 
   delete(path, options) {
     return this.makeRequest(path, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: options?.headers,
     });
   }
@@ -40,13 +40,13 @@ class HttpClient {
     const headers = new Headers();
 
     if (options.body) {
-      headers.append('Content-Type', 'application/json')
+      headers.append("Content-Type", "application/json");
     }
 
     if (options.headers) {
-     Object.entries(options.headers).forEach(([name, value]) => {
-      headers.append(name, value);
-     })
+      Object.entries(options.headers).forEach(([name, value]) => {
+        headers.append(name, value);
+      });
     }
 
     const response = await fetch(`${this.baseURL}${path}`, {
@@ -56,16 +56,16 @@ class HttpClient {
     });
 
     let responseBody = null;
-    const contentType = response.headers.get('Content-Type');
-    if(contentType?.includes('application/json')) {
+    const contentType = response.headers.get("Content-Type");
+    if(contentType?.includes("application/json")) {
       responseBody = await response.json();
     }
 
-      if(response.ok) {
+    if(response.ok) {
       return responseBody;
-      }
+    }
 
-      throw new APIError(response, responseBody);
+    throw new APIError(response, responseBody);
   }
 }
 

@@ -8,7 +8,7 @@ export default function useIsMounted() {
 
     return () => {
       isMounted.current = false;
-    }
+    };
   },[]);
 
   const getIsMounted = useCallback(()  => {

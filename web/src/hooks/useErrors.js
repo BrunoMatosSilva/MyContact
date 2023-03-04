@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function useErrors(){
   const [errors, setErrors] = useState([]);
@@ -6,9 +6,9 @@ export default function useErrors(){
   function setError({ field, message }){
     const errorAlreadyExists = errors.find((error) => error.field === field);
 
-      if(errorAlreadyExists) {
-        return;
-      }
+    if(errorAlreadyExists) {
+      return;
+    }
 
     setErrors((prevState) => [
       ...prevState,
@@ -19,7 +19,7 @@ export default function useErrors(){
   function removeError(fieldName) {
     setErrors((prevState) => prevState.filter(
       (error) => error.field !== fieldName,
-      ));
+    ));
   }
 
   function getErrorMessageByFieldName(fieldName){

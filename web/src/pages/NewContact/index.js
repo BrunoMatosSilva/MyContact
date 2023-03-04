@@ -9,32 +9,32 @@ export default function NewContact(){
   async function handleSubmit(contact) {
 
     try {
-     await ContactsService.createContact(contact);
+      await ContactsService.createContact(contact);
 
-     contactFormRef.current.resetFields();
+      contactFormRef.current.resetFields();
 
       toast({
-        type: 'success',
-        text: 'Contato cadastrado com sucesso!',
+        type: "success",
+        text: "Contato cadastrado com sucesso!",
         duration: 3000,
-      })
+      });
 
     }catch(error){
       toast({
-        type: 'danger',
-        text: 'Ocorreu um erro ao cadastrar contato!',
-      })
+        type: "danger",
+        text: "Ocorreu um erro ao cadastrar contato!",
+      });
     }
   }
   return (
     <>
-    <PageHeader title="Novo Contato" />
+      <PageHeader title="Novo Contato" />
 
-    <ContactForm
-      ref={contactFormRef}
-      buttonLabel="Cadastrar"
-      onSubmit={handleSubmit}
-    />
+      <ContactForm
+        ref={contactFormRef}
+        buttonLabel="Cadastrar"
+        onSubmit={handleSubmit}
+      />
     </>
 
   );

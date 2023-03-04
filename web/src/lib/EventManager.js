@@ -17,7 +17,7 @@ export default class EventManager {
 
     this.listeners.get(event).forEach((listener) => {
       listener(payload);
-    })
+    });
   }
 
   removeListener(event, listenerToRemove){

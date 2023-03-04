@@ -1,25 +1,24 @@
-/* eslint-disable import/no-anonymous-default-export */
 export default {
   colors: {
-    background: '#F6F5FC',
+    background: "#F6F5FC",
     primary: {
-      lighter: '#E0E3FF',
-      light: '#6674F4',
-      main: '#5061FC',
-      dark: '#3346F0',
+      lighter: "#E0E3FF",
+      light: "#6674F4",
+      main: "#5061FC",
+      dark: "#3346F0",
     },
     gray: {
-      900: '#222222',
-      200: '#BCBCBC',
-      100: '#E5E5E5',
+      900: "#222222",
+      200: "#BCBCBC",
+      100: "#E5E5E5",
     },
     danger: {
-     light: '#F97171',
-     main: '#FC5050',
-     dark: '#F63131'
+      light: "#F97171",
+      main: "#FC5050",
+      dark: "#F63131"
     },
     success: {
-      main: '#51CA73',
+      main: "#51CA73",
     }
   },
 };

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import arrow from '../../assets/images/icons/arrow.svg';
+import arrow from "../../assets/images/icons/arrow.svg";
 import { Container } from "./styles";
 
 export default function PageHeader({ title }){
@@ -18,4 +18,4 @@ export default function PageHeader({ title }){
 
 PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
-}
+};
