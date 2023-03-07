@@ -19,15 +19,12 @@ export default function useHome(){
   const loadContacts = useCallback(async() => {
     try {
       setIsLoading(true);
-
       const contactsList = await ContactsService.listContacts(orderBy);
-
       setHasError(false);
       setContacts(contactsList);
-
-
     } catch(error){
       setHasError(true);
+      setContacts([]);
     } finally {
       setIsLoading(false);
     }
