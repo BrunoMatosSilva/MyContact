@@ -52,7 +52,7 @@ export default function Modal({
   );
 }
 
-Modal.protoType = {
+Modal.prototype = {
   danger: PropTypes.boolean,
   visible: PropTypes.bool,
   isLoading: PropTypes.bool,
