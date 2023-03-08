@@ -1,7 +1,7 @@
 
-import ToastMessage from "../ToastMessage";
-import { Container } from "./styles";
-import useToastContainer from "./useToastContainer";
+import ToastMessage from '../ToastMessage';
+import { Container } from './styles';
+import useToastContainer from './useToastContainer';
 
 export default function ToastContainer(){
   const { messages, handleRemoveMessage } = useToastContainer();

@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { Container } from "./styles";
+import PropTypes from 'prop-types';
+import { Container } from './styles';
 
 export default function InputSearch({ value, onChange }){
   return (

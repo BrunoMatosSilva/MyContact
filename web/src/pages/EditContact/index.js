@@ -1,7 +1,7 @@
-import Loader from "../../components/Loader";
-import ContactForm from "../../components/ContactForm";
-import PageHeader from "../../components/PageHeader";
-import useEditContact from "./useEditContact";
+import Loader from '../../components/Loader';
+import ContactForm from '../../components/ContactForm';
+import PageHeader from '../../components/PageHeader';
+import useEditContact from './useEditContact';
 
 export default function EditContact(){
   const {
@@ -13,7 +13,7 @@ export default function EditContact(){
   return (
     <>
       <Loader isLoading={isLoading} />
-      <PageHeader title={isLoading ? "Carregando..." : `Editar ${contactName}`} />
+      <PageHeader title={isLoading ? 'Carregando...' : `Editar ${contactName}`} />
 
       <ContactForm
         ref={contactFormRef}

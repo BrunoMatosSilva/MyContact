@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
-import {forwardRef} from "react";
-import FormGroup from "../FormGroup";
-import Input from "../Input";
-import Select from "../Select";
-import Button from "../Button";
-import { ButtonContainer, Form } from "./styles";
-import useContactForm from "./useCobtactForm";
+import PropTypes from 'prop-types';
+import {forwardRef} from 'react';
+import FormGroup from '../FormGroup';
+import Input from '../Input';
+import Select from '../Select';
+import Button from '../Button';
+import { ButtonContainer, Form } from './styles';
+import useContactForm from './useCobtactForm';
 
 
 const ContactForm = forwardRef(({buttonLabel, onSubmit}, ref) =>{
@@ -28,9 +28,9 @@ const ContactForm = forwardRef(({buttonLabel, onSubmit}, ref) =>{
 
   return (
     <Form onSubmit={handleSubmit} noValidate>
-      <FormGroup error={getErrorMessageByFieldName("name")}>
+      <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
-          error={getErrorMessageByFieldName("name")}
+          error={getErrorMessageByFieldName('name')}
           placeholder="Nome *"
           onChange={handleNameChange}
           value={name}
@@ -38,10 +38,10 @@ const ContactForm = forwardRef(({buttonLabel, onSubmit}, ref) =>{
         />
       </FormGroup>
 
-      <FormGroup error={getErrorMessageByFieldName("email")}>
+      <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
           type="email"
-          error={getErrorMessageByFieldName("email")}
+          error={getErrorMessageByFieldName('email')}
           placeholder="E-mail"
           onChange={handleEmailChange}
           value={email}

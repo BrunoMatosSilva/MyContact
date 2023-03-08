@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
 export default function ReactPortal({containerId, children}) {
   let container = document.getElementById(containerId);
 
   if(!container) {
-    container = document.createElement("div");
-    container.setAttribute("id", containerId);
+    container = document.createElement('div');
+    container.setAttribute('id', containerId);
     document.body.appendChild(container);
   }
 
@@ -19,5 +19,5 @@ ReactPortal.propTypes = {
 };
 
 ReactPortal.defaultProps = {
-  containerId: "portal-root",
+  containerId: 'portal-root',
 };

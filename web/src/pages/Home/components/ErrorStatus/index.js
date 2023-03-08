@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import sad from "../../../../assets/images/sad.svg";
+import PropTypes from 'prop-types';
+import sad from '../../../../assets/images/sad.svg';
 
-import Button from "../../../../components/Button";
-import { Container } from "./styles";
+import Button from '../../../../components/Button';
+import { Container } from './styles';
 
 export default function ErrorStatus({ onTryAgain }) {
   return (

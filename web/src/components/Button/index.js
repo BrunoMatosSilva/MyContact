@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import Spinner from "../Spinner";
-import { StyledButton } from "./styles";
+import PropTypes from 'prop-types';
+import Spinner from '../Spinner';
+import { StyledButton } from './styles';
 
 export default function Button({
   type,
@@ -31,7 +31,7 @@ Button.prototype = {
   onClick: PropTypes.func,
 };
 Button.defaultProps = {
-  type: "button",
+  type: 'button',
   disabled: false,
   isLoading: false,
   danger: false,

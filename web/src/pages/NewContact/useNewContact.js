@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import ContactsService from "../../services/ContactsService";
-import toast from "../../utils/toast";
+import { useRef } from 'react';
+import ContactsService from '../../services/ContactsService';
+import toast from '../../utils/toast';
 
 export default function useNewContact() {
   const contactFormRef = useRef(null);
@@ -13,15 +13,15 @@ export default function useNewContact() {
       contactFormRef.current.resetFields();
 
       toast({
-        type: "success",
-        text: "Contato cadastrado com sucesso!",
+        type: 'success',
+        text: 'Contato cadastrado com sucesso!',
         duration: 3000,
       });
 
     }catch(error){
       toast({
-        type: "danger",
-        text: "Ocorreu um erro ao cadastrar contato!",
+        type: 'danger',
+        text: 'Ocorreu um erro ao cadastrar contato!',
       });
     }
   }

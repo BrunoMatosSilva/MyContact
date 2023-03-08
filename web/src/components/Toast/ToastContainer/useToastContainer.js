@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { toastEventManager } from "../../../utils/toast";
+import { useState, useEffect, useCallback } from 'react';
+import { toastEventManager } from '../../../utils/toast';
 
 export default function useToastContainer(){
   const [messages, setMessages] = useState([]);
@@ -12,10 +12,10 @@ export default function useToastContainer(){
         {id: Math.random(), type, text, duration},
       ]);
     }
-    toastEventManager.on("addtoast", handleAddToast);
+    toastEventManager.on('addtoast', handleAddToast);
 
     return () => {
-      toastEventManager.removeListener("addtoast", handleAddToast);
+      toastEventManager.removeListener('addtoast', handleAddToast);
     };
   },[]);
 

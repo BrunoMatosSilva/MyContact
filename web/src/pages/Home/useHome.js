@@ -1,11 +1,11 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
-import ContactsService from "../../services/ContactsService";
-import toast from "../../utils/toast";
+import { useEffect, useState, useMemo, useCallback } from 'react';
+import ContactsService from '../../services/ContactsService';
+import toast from '../../utils/toast';
 
 export default function useHome(){
   const [contacts, setContacts] = useState([]);
-  const [orderBy, setOrderBy] = useState("asc");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [orderBy, setOrderBy] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible]  = useState(false);
@@ -36,7 +36,7 @@ export default function useHome(){
 
   function handleToggleOrderBy(){
     setOrderBy(
-      (prevState) => (prevState === "asc" ? "desc" : "asc"),
+      (prevState) => (prevState === 'asc' ? 'desc' : 'asc'),
     );
   }
 
@@ -55,7 +55,6 @@ export default function useHome(){
 
   function handleCloseDeleteModal(){
     setIsDeleteModalVisible(false);
-    setContactBeingDeleted(null);
   }
 
   async function handleConfirmDeleteContact(){
@@ -70,14 +69,14 @@ export default function useHome(){
       handleCloseDeleteModal();
 
       toast({
-        type:"success",
-        text: "Contato deletado com sucesso!",
+        type:'success',
+        text: 'Contato deletado com sucesso!',
       });
 
     }catch{
       toast({
-        type:"danger",
-        text: "Ocorreu um erro ao deletar o contato!",
+        type:'danger',
+        text: 'Ocorreu um erro ao deletar o contato!',
       });
     } finally {
       setIsLoadingDelete(false);

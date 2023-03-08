@@ -1,14 +1,14 @@
-import Loader from "../../components/Loader";
-import {Container,} from "./styles";
+import Loader from '../../components/Loader';
+import {Container,} from './styles';
 
-import useHome from "./useHome";
-import InputSearch from "./components/InputSearch";
-import Header from "./components/Header";
-import ErrorStatus from "./components/ErrorStatus";
-import EmptyList from "./components/EmptyList";
-import SearchNotFoundStatus from "./components/SearchNotFound";
-import ContactsList from "./components/ContactsList";
-import Modal from "../../components/Modal";
+import useHome from './useHome';
+import InputSearch from './components/InputSearch';
+import Header from './components/Header';
+import ErrorStatus from './components/ErrorStatus';
+import EmptyList from './components/EmptyList';
+import SearchNotFoundStatus from './components/SearchNotFound';
+import ContactsList from './components/ContactsList';
+import Modal from '../../components/Modal';
 
 export default function Home(){
   const {

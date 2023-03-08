@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { Container } from "./style";
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Container } from './style';
 
 export default function Header({
   hasError,
@@ -9,11 +9,11 @@ export default function Header({
 }) {
 
   const alignment = hasError
-    ? "flex-end"
+    ? 'flex-end'
     : (
       qtyOfContacts > 0
-        ? "space-between"
-        : "center"
+        ? 'space-between'
+        : 'center'
     );
 
   return (
@@ -23,7 +23,7 @@ export default function Header({
       {(!hasError && qtyOfContacts > 0) && (
         <strong>
           {qtyOfFilteredContacts}
-          {qtyOfFilteredContacts === 1 ? " contato" : " contatos"}
+          {qtyOfFilteredContacts === 1 ? ' contato' : ' contatos'}
         </strong>
       )}
       <Link to="/new">Novo Contato</Link>

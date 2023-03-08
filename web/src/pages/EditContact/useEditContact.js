@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import ContactsService from "../../services/ContactsService";
-import toast from "../../utils/toast";
-import useSafeAsyncAction from "../../hooks/useSafeAsyncAction";
+import { useEffect, useRef, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import ContactsService from '../../services/ContactsService';
+import toast from '../../utils/toast';
+import useSafeAsyncAction from '../../hooks/useSafeAsyncAction';
 
 export default function useEditContact() {
   const [isLoading, setIsLoading] = useState(true);
-  const [contactName, setContactName] = useState("");
+  const [contactName, setContactName] = useState('');
   const contactFormRef = useRef(null);
   const {id} = useParams();
   const history = useHistory();
@@ -26,10 +26,10 @@ export default function useEditContact() {
       }catch{
 
         safeAsyncAction(() => {
-          history.push("/");
+          history.push('/');
           toast({
-            type: "danger",
-            text: "Contato não encontrado!",
+            type: 'danger',
+            text: 'Contato não encontrado!',
           });
         });
       }
@@ -44,15 +44,15 @@ export default function useEditContact() {
       setContactName(contactData.name);
 
       toast({
-        type: "success",
-        text: "Contato editado com sucesso!",
+        type: 'success',
+        text: 'Contato editado com sucesso!',
         duration: 3000,
       });
 
     }catch(error){
       toast({
-        type: "danger",
-        text: "Ocorreu um erro ao editar contato!",
+        type: 'danger',
+        text: 'Ocorreu um erro ao editar contato!',
       });
     }
   }
