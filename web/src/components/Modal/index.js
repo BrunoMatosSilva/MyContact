@@ -17,7 +17,7 @@ export default function Modal({
   visible,
 }){
 
-  const { shouldRender, animetedElementRef } = useAnimatedUnMount(visible);
+  const { shouldRender, animatedElementRef } = useAnimatedUnMount(visible);
 
   if (!shouldRender){
     return null;
@@ -25,7 +25,7 @@ export default function Modal({
 
   return (
     <ReactPortal containerId="modal-root">
-      <Overlay isLeaving={!visible} ref={animetedElementRef}>
+      <Overlay isLeaving={!visible} ref={animatedElementRef}>
         <Container danger={danger} isLeaving={!visible}>
           <h1>{title}</h1>
 

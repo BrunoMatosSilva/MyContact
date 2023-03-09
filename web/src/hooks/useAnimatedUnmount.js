@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function useAnimatedUnMount(visible) {
   const [shouldRender, setShouldRender] = useState(visible);
-  const animetedElementRef = useRef(null);
+  const animatedElementRef = useRef(null);
 
   useEffect(() => {
     if (visible){
@@ -13,7 +13,7 @@ export default function useAnimatedUnMount(visible) {
       setShouldRender(false);
     }
 
-    const elementRef =  animetedElementRef.current;
+    const elementRef =  animatedElementRef.current;
     if (!visible && elementRef){
       elementRef.addEventListener('animationend', handleAnimationEnd);
     }
@@ -27,6 +27,6 @@ export default function useAnimatedUnMount(visible) {
 
   return {
     shouldRender,
-    animetedElementRef
+    animatedElementRef
   };
 }
