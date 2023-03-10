@@ -4,7 +4,7 @@ export default function useAnimatedList(initialValue = []) {
   const [items, setItems] = useState(initialValue);
   const [pendingRemovalItemsIds, setPendingRemovalItemsIds] = useState([]);
 
-  const animatedRefs = useRef(new Map);
+  const animatedRefs = useRef(new Map());
   const animationEndListeners = useRef(new Map());
 
   const handleAnimationEnd = useCallback((itemId) => {
@@ -29,7 +29,7 @@ export default function useAnimatedList(initialValue = []) {
       if (animatedElement && !alreadyHasListeners) {
         const onAnimationEnd = () => handleAnimationEnd(itemId);
         const removeListener = () => {
-          animationEndListeners.removeEventListener('animationend', onAnimationEnd);
+          animatedElement.removeEventListener('animationend', onAnimationEnd);
         };
 
         animatedElement.addEventListener('animationend', onAnimationEnd);
@@ -40,8 +40,9 @@ export default function useAnimatedList(initialValue = []) {
 
   useEffect(() => {
     const removeListeners = animationEndListeners.current;
+
     return () => {
-      removeListeners.forEach((removeListener) => removeListener);
+      removeListeners.forEach((removeListener) => removeListener());
     };
   },[]);
 
