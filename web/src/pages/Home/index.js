@@ -12,6 +12,7 @@ import Modal from '../../components/Modal';
 
 export default function Home(){
   const {
+    isPending,
     isLoading,
     contactBeingDeleted,
     isLoadingDelete,
@@ -53,6 +54,7 @@ export default function Home(){
 
       {hasContacts && (
         <>
+          {isPending && <Loader />}
           <ContactsList
             filteredContacts={filteredContacts}
             orderBy={orderBy}
