@@ -49,7 +49,7 @@ cursor: pointer;
 animation: ${messageIn} 0.3s;
 
 ${({ isLeaving }) => isLeaving && css `
-  animation: ${messageOut} 0.3s;
+  animation: ${messageOut} 0.3s forwards;
 `};
 
 &:focus {
