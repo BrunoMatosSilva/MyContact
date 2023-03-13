@@ -5,7 +5,7 @@ import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
 import { ButtonContainer, Form } from './styles';
-import useContactForm from './useCobtactForm';
+import useContactForm from './useContactForm';
 
 
 const ContactForm = forwardRef(({buttonLabel, onSubmit}, ref) =>{
