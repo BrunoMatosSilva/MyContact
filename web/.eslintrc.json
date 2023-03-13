@@ -21,6 +21,7 @@
     "rules": {
       "react/prop-types": "off",
       "react/display-name": "off",
+      "react/require-default-props": "off",
       "import/no-anonymous-default-export": "off",
         "indent": [
             "error",
