@@ -38,7 +38,7 @@ export default function Home(){
     <Container>
       <Loader isLoading={isLoading} />
 
-      {(hasContacts && hasContacts) && (
+      {(hasContacts) && (
         <InputSearch value={searchTerm} onChange={handleChangeSearchTerm} />
       )}
 
