@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ContactsService from '../../services/ContactsService';
 import toast from '../../utils/toast';
 import useSafeAsyncAction from '../../hooks/useSafeAsyncAction';
@@ -9,7 +9,7 @@ export default function useEditContact() {
   const [contactName, setContactName] = useState('');
   const contactFormRef = useRef(null);
   const {id} = useParams();
-  const history = useHistory();
+  const history = useNavigate();
   const safeAsyncAction = useSafeAsyncAction();
 
   useEffect(() => {
